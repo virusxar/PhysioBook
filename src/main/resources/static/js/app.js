@@ -3,6 +3,7 @@ import { escapeHtml } from './ui.js';
 import { renderAuthView } from './views/auth-view.js';
 import { renderPatientView } from './views/patient-view.js';
 import { renderPhysioView } from './views/physio-view.js';
+import { renderAdminView } from './views/admin-view.js';
 
 const app = document.querySelector('#app');
 const userBox = document.querySelector('#user-box');
@@ -51,19 +52,11 @@ function renderUserBox(me) {
 function renderPanel(me) {
     if (me.role === 'PATIENT') {
         renderPatientView(app, me);
-        return;
-    }
-    if (me.role === 'PHYSIOTHERAPIST') {
+    } else if (me.role === 'PHYSIOTHERAPIST') {
         renderPhysioView(app, me);
-        return;
+    } else {
+        renderAdminView(app);
     }
-    app.innerHTML = `
-        <div class="card">
-            <h1>Witaj!</h1>
-            <p>Jesteś zalogowany jako <strong>${ROLE_NAMES[me.role]}</strong>.</p>
-            <p class="muted">Id profilu: ${me.profileId ?? 'brak'}</p>
-        </div>
-    `;
 }
 
 start();

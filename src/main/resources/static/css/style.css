@@ -115,3 +115,13 @@ button.danger:hover { background: #991b1b; }
 .filters .checkbox { margin-bottom: 0; }
 
 [hidden] { display: none !important; }
+
+.schedule-row { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 8px; }
+.schedule-row label { margin-bottom: 0; flex: 1 1 120px; }
+.schedule-row .remove { flex: 0 0 auto; }
+
+.form-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-top: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 500; font-size: 0.9rem; border-top: none; }

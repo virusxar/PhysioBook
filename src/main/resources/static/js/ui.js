@@ -71,3 +71,21 @@ export const NOTE_TYPE_NAMES = {
     RECOMMENDATION: 'Zalecenia',
     OTHER: 'Inne',
 };
+
+export const DAY_NAMES = {
+    MONDAY: 'Poniedziałek',
+    TUESDAY: 'Wtorek',
+    WEDNESDAY: 'Środa',
+    THURSDAY: 'Czwartek',
+    FRIDAY: 'Piątek',
+    SATURDAY: 'Sobota',
+    SUNDAY: 'Niedziela',
+};
+
+export function personName(person) {
+    return person.fullName ?? `${person.firstName ?? ''} ${person.lastName ?? ''}`.trim();
+}
+
+export function asList(data) {
+    return Array.isArray(data) ? data : (data?.content ?? []);
+}
