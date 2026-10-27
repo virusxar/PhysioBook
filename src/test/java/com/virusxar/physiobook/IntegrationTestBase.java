@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.demo-data.enabled=false")
 @AutoConfigureMockMvc
 @Import(TestcontainersConfiguration.class)
 abstract class IntegrationTestBase {
