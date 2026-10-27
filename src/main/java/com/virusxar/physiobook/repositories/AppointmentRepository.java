@@ -28,4 +28,6 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
     List<AppointmentEntity> findByPhysiotherapistEntityIdAndStartTimeBetweenOrderByStartTime(Long physiotherapistId, OffsetDateTime from, OffsetDateTime to);
 
     List<AppointmentEntity> findByPatientEntityIdAndStatus(Long patientId, AppointmentStatus status);
+
+    List<AppointmentEntity> findByPhysiotherapistEntityIdOrderByStartTime(Long physiotherapistId);
 }

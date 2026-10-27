@@ -1,0 +1,117 @@
+:root {
+    --primary: #0f766e;
+    --primary-dark: #115e59;
+    --bg: #f5f7f7;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --error: #b91c1c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+}
+
+.logo { font-weight: 700; font-size: 1.2rem; }
+
+#user-box { display: flex; gap: 12px; align-items: center; }
+
+main { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.card.narrow { max-width: 400px; margin: 0 auto 16px; }
+
+h1, h2 { margin-top: 0; }
+
+label { display: block; margin-bottom: 12px; font-size: 0.9rem; color: var(--muted); }
+
+input, select, textarea {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font: inherit;
+    color: var(--text);
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary);
+    color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+button:hover { background: var(--primary-dark); }
+
+button.secondary { background: transparent; color: inherit; border: 1px solid currentColor; }
+
+.link-button { background: none; color: var(--primary); padding: 0; text-decoration: underline; }
+.link-button:hover { background: none; color: var(--primary-dark); }
+
+.error { color: var(--error); margin: 12px 0 0; white-space: pre-line; }
+
+.muted { color: var(--muted); }
+
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+.row > label { flex: 1 1 200px; }
+
+.slots { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px; }
+.slots button { background: white; color: var(--primary); border: 1px solid var(--primary); }
+.slots button:hover, .slots button.selected { background: var(--primary); color: white; }
+
+.list { list-style: none; padding: 0; margin: 0; }
+.list li { padding: 12px 0; border-top: 1px solid var(--border); }
+.list li:first-child { border-top: none; }
+.list-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.8rem; background: var(--border); }
+.badge.BOOKED { background: #fef3c7; color: #92400e; }
+.badge.CONFIRMED { background: #ccfbf1; color: #115e59; }
+.badge.COMPLETED { background: #e0e7ff; color: #3730a3; }
+.badge.CANCELLED, .badge.NO_SHOW { background: #fee2e2; color: #991b1b; }
+
+.success { color: var(--primary-dark); margin: 12px 0 0; }
+
+button.danger { background: var(--error); }
+button.danger:hover { background: #991b1b; }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.actions button { padding: 6px 12px; font-size: 0.9rem; }
+
+.checkbox { display: flex; align-items: center; gap: 8px; color: var(--text); }
+.checkbox input { width: auto; margin: 0; }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+.filters { margin: 12px 0 8px; align-items: center; }
+.filters > label { flex: 0 1 220px; }
+.filters .checkbox { margin-bottom: 0; }
+
+[hidden] { display: none !important; }

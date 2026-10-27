@@ -38,7 +38,6 @@ public class AvailabilityService {
                 .toList();
     }
 
-    // Podmienia cały tygodniowy grafik: stare wpisy usuwa, nowe zapisuje.
     @Transactional
     public List<AvailabilityResponse> replace(Long physiotherapistId, UpdateAvailabilityRequest request) {
         accessGuard.checkPhysiotherapistAccess(physiotherapistId);
@@ -70,7 +69,6 @@ public class AvailabilityService {
                 throw new BadRequestException("Godzina końca musi być po godzinie początku (" + e.dayOfWeek() + ")");
             }
         }
-        // Dwa przedziały w tym samym dniu nie mogą na siebie nachodzić
         for (int i = 0; i < entries.size(); i++) {
             for (int j = i + 1; j < entries.size(); j++) {
                 AvailabilityRequest a = entries.get(i);

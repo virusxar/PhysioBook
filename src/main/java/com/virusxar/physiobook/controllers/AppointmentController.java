@@ -38,10 +38,10 @@ public class AppointmentController {
     }
 
     @GetMapping("/physiotherapists/{physiotherapistId}/appointments")
-    public List<AppointmentResponse> getDayForPhysiotherapist(
+    public List<AppointmentResponse> getForPhysiotherapist(
             @PathVariable Long physiotherapistId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return appointmentService.getDayForPhysiotherapist(physiotherapistId, date);
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return appointmentService.getForPhysiotherapist(physiotherapistId, date);
     }
 
     @PatchMapping("/appointments/{id}/confirm")

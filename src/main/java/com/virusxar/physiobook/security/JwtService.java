@@ -35,7 +35,7 @@ public class JwtService {
                 .claim("email", user.getEmail())
                 .claim("role", user.getRole().name());
         if (profileId != null) {
-            claims.claim("profileId", profileId);   // id pacjenta albo fizjoterapeuty; admin go nie ma
+            claims.claim("profileId", profileId);
         }
 
         JwsHeader header = JwsHeader.with(MacAlgorithm.HS256).build();

@@ -25,7 +25,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class AppointmentService {
 
-    // Statusy, które blokują termin. Odwołana wizyta zwalnia miejsce.
     private static final Set<AppointmentStatus> ACTIVE_STATUSES =
             Set.of(AppointmentStatus.BOOKED, AppointmentStatus.CONFIRMED);
 
@@ -155,5 +154,23 @@ public class AppointmentService {
             }
         }
         return false;
+    }
+
+    @Transactional(readOnly = true)
+    public List<AppointmentResponse> getForPhysiotherapist(Long physiotherapistId, LocalDate date) {
+        accessGuard.checkPhysiotherapistAccess(physiotherapistId);
+
+        List<AppointmentEntity> appointments;
+        if (date == null) {
+            appointments = appointmentRepository.findByPhysiotherapistEntityIdOrderByStartTime(physiotherapistId);
+        } else {
+            OffsetDateTime from = date.atStartOfDay(CLINIC_ZONE).toOffsetDateTime();
+            OffsetDateTime to = date.plusDays(1).atStartOfDay(CLINIC_ZONE).toOffsetDateTime();
+            appointments = appointmentRepository
+                    .findByPhysiotherapistEntityIdAndStartTimeBetweenOrderByStartTime(physiotherapistId, from, to);
+        }
+        return appointments.stream()
+                .map(appointmentMapper::toResponse)
+                .toList();
     }
 }

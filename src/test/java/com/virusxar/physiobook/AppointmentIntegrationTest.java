@@ -100,4 +100,27 @@ class AppointmentIntegrationTest extends IntegrationTestBase {
         book(otherPatient, otherPatient.profileId(), physio.profileId(), at(monday, "10:00"), 60)
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    void physiotherapistSeesAllOwnAppointmentsWithoutDate() throws Exception {
+        book(patient, patient.profileId(), physio.profileId(), at(monday, "09:00"), 60)
+                .andExpect(status().isCreated());
+        book(patient, patient.profileId(), physio.profileId(), at(monday.plusWeeks(1), "10:00"), 60)
+                .andExpect(status().isCreated());
+
+        send(get("/api/physiotherapists/" + physio.profileId() + "/appointments"), physio.token(), null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        send(get("/api/physiotherapists/" + physio.profileId() + "/appointments?date=" + monday), physio.token(), null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    void physiotherapistCannotSeeAnotherPhysiotherapistsAppointments() throws Exception {
+        Account otherPhysio = createPhysiotherapist();
+
+        send(get("/api/physiotherapists/" + physio.profileId() + "/appointments"), otherPhysio.token(), null)
+                .andExpect(status().isForbidden());
+    }
 }
